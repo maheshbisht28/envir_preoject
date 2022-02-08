@@ -1,0 +1,70 @@
+Nearest Smaller Values
+
+import java.util.*; 
+import java.io.*;
+
+class Main {
+
+  public static String NearestSmallerValues(int[] arr) {
+    int size=arr.length;
+    int [] new_arr= new int[size];
+    new_arr[0]=-1;
+    for (int i=1;i<size;i++)
+    { int small=-1;
+      int small_index=-1;
+      for (int j=i-1;j>=0;j--)
+        {  
+          if (arr[i]>=arr[j])
+             { 
+              //  System.out.print(" in "+arr[i]+" "+arr[j]);
+               if (j>small_index)
+                  { small_index=j; }
+              // System.out.println(" ind "+small_index);    
+             }
+        }
+        if (small_index!=-1)
+          {new_arr[i]=arr[small_index];} 
+        else 
+          { new_arr[i]=-1; }  
+        //  System.out.println(" new_arr "+new_arr[i]);  
+    } 
+    String str="";
+        for (int i=0;i<size;i++)
+         { str+=new_arr[i]+" "; }
+    return str;
+  }
+
+  public static void main (String[] args) {  
+    // keep this function call here     
+    Scanner s = new Scanner(System.in);
+    System.out.println(NearestSmallerValues(s.nextLine())); 
+  }
+
+}
+///////////////////////////////
+SQL Member Count
+Your table: maintable_IYRHM
+
+MySQL version: 5.5.56-log
+
+In this MySQL challenge, your query should return the names of the people who are reported to (excluding null values), the number of members that report to them, and the average age of those members as an integer. The rows should be ordered by the names in alphabetical order. Your output should look like the following table
+
+
+
+SELECT ReportsTo, Count(*) as Members, round(avg(age)) as
+AverageAge FROM maintable_IYRHM where ReportsTo is
+ not Null  group by ReportsTo order by ReportsTo asc;
+
+ ///////////////////
+
+ SQL Basic Sum
+Your table: maintable_XYBFY
+
+MySQL version: 5.5.56-log
+
+In this MySQL challenge, your query should return LastName and the sum of Age from your table for all users with a LastName = Smith. The column title of the summed ages should be SumAge. Your output should look like the following table.
+
+
+
+SELECT LastName, Sum(Age) as SumAge FROM maintable_XYBFY 
+where LastName="Smith" group by (LastName);
